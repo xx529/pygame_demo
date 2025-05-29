@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.85.2/dist/phaser-arcade-physics.min.js"></script>
+</head>
+
+<body>
+
+    <input type="text" id="numberInput" placeholder="输入数字">
+    <button id="sendButton">发送</button>
+
+    <script>
+        class Example extends Phaser.Scene {
+            preload() {
+                this.load.setBaseURL('https://cdn.phaserfiles.com/v385');
+
+                this.load.image('sky', 'assets/skies/space3.png');
+                this.load.image('logo', 'assets/sprites/phaser3-logo.png');
+                this.load.image('red', 'assets/particles/red.png');
+            }
+
+            create() {
+                var init_x = 0;
+                async function fetchInitialState() {
+                    const response = await fetch('http://127.0.0.1:8000/state');
+                    const data = await response.json();
+                    console.log(data.state);
+                    init_x = data.state; // init_x 的值可以通过获取的 state 数据进行修改
+                }
+
+                fetchInitialState().then(() => {
+                    this.a = this.add.image(init_x, 300, 'sky');
+                });
+
+                this.b = this.add.image(500, 300, 'sky');
+                const socket = new WebSocket('ws://127.0.0.1:8000/ws');
+
+                socket.onopen = function () {
+                    console.log('WebSocket connection opened.');
+                };
+
+                socket.onmessage = function (event) {
+                    console.log(event.data);
+                    if (parseInt(event.data) > 50) {
+                        this.a.x = event.data;
+                    }
+                }.bind(this);
+
+                socket.onclose = function () {
+                    console.log('WebSocket connection closed.');
+                };
+
+                document.getElementById('sendButton').addEventListener('click', function () {
+                    const numberInput = document.getElementById('numberInput').value;
+                    if (socket.readyState === WebSocket.OPEN) {
+                        socket.send(numberInput);
+                        console.log('Sent number:', numberInput);
+                    } else {
+                        console.log('WebSocket is not open.');
+                    }
+                });
+            }
+
+            update() {
+                this.b.rotation += 0.01;
+            };
+        }
+
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            scene: Example,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 200 }
+                }
+            }
+        };
+
+        const game = new Phaser.Game(config);
+    </script>
+
+</body>
+
+</html>
