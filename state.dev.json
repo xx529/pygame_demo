@@ -1,0 +1,159 @@
+{
+  "gameState": {
+    "version": "1.0.2",
+    "gameTime": "2025-05-29T14:30:00Z",
+    "currentScene": "downtown",
+    "environment": {
+      "weather": "sunny",
+      "timeOfDay": "afternoon",
+      "globalEvents": ["festival_ongoing"]
+    }
+  },
+
+  "player": {
+    "id": "player_001",
+    "name": "Alex",
+    "attributes": {
+      "health": 85,
+      "energy": 70,
+      "hunger": 30,
+      "hygiene": 90,
+      "happiness": 80,
+      "social": 75
+    },
+    "skills": {
+      "cooking": 45,
+      "charisma": 60,
+      "intelligence": 70,
+      "creativity": 55
+    },
+    "position": {
+      "scene": "downtown",
+      "x": 320,
+      "y": 150
+    },
+    "inventory": [
+      {"id": "item_045", "type": "food", "quantity": 3},
+      {"id": "item_128", "type": "book", "quantity": 1}
+    ],
+    "relationships": {
+      "npc_102": {"affinity": 65, "lastInteraction": "2025-05-29T13:45:00Z"},
+      "npc_087": {"affinity": 40, "lastInteraction": "2025-05-29T10:20:00Z"}
+    },
+    "activeQuests": ["quest_023", "quest_045"],
+    "completedQuests": ["quest_001", "quest_012"]
+  },
+
+  "npcs": {
+    "npc_102": {
+      "id": "npc_102",
+      "name": "Dr. Emily Chen",
+      "type": "scientist",
+      "personality": {
+        "openness": 0.8,
+        "conscientiousness": 0.9,
+        "extraversion": 0.6,
+        "agreeableness": 0.7,
+        "neuroticism": 0.3
+      },
+      "preferences": {
+        "likes": ["science", "coffee", "classical_music"],
+        "dislikes": ["noise", "disorder"]
+      },
+      "position": {
+        "scene": "downtown",
+        "x": 280,
+        "y": 180
+      },
+      "schedule": [
+        {"time": "09:00", "location": "science_lab", "activity": "work"},
+        {"time": "13:00", "location": "cafe", "activity": "lunch"}
+      ],
+      "memory": {
+        "longTerm": [
+          {"id": "mem_045", "type": "player_interaction", "summary": "Discussed quantum physics", "timestamp": "2025-05-29T13:45:00Z"},
+          {"id": "mem_032", "type": "event", "summary": "Won science award", "timestamp": "2025-05-15T10:00:00Z"}
+        ],
+        "shortTerm": [
+          {"id": "mem_102", "type": "observation", "summary": "Player helped an old lady", "timestamp": "2025-05-29T14:15:00Z"}
+        ]
+      },
+      "needs": {
+        "social": 60,
+        "professional": 85
+      },
+      "currentGoal": "research_project",
+      "relationships": {
+        "npc_087": {"affinity": 75, "relationType": "friend"},
+        "player": {"affinity": 65}
+      }
+    }
+  },
+
+  "worldState": {
+    "buildings": {
+      "downtown_cafe": {
+        "state": {
+          "cleanliness": 90,
+          "customersPresent": 12
+        }
+      },
+      "player_home": {
+        "state": {
+          "cleanliness": 70,
+          "electricity": true,
+          "decorations": ["painting_01", "plant_03"]
+        }
+      }
+    },
+    "globalRelationships": [
+      {
+        "participants": ["npc_102", "npc_087"],
+        "type": "friendship",
+        "strength": 75
+      }
+    ]
+  },
+
+  "questSystem": {
+    "activeQuests": {
+      "quest_023": {
+        "id": "quest_023",
+        "title": "Help Emily with her research",
+        "description": "Collect 5 science samples from the park",
+        "giver": "npc_102",
+        "status": "in_progress",
+        "objectives": [
+          {"id": "obj_01", "text": "Find samples in park", "completed": true},
+          {"id": "obj_02", "text": "Deliver to Emily", "completed": false}
+        ],
+        "reward": {"money": 500, "relationship": 20}
+      }
+    },
+    "completedQuests": {
+      "quest_012": {
+        "id": "quest_012",
+        "title": "Fix the broken generator",
+        "completionDate": "2025-05-28T16:30:00Z"
+      }
+    }
+  },
+
+  "aiState": {
+    "llmContext": {
+      "npc_102": {
+        "recentConversations": [
+          {
+            "with": "player",
+            "summary": "Discussed quantum entanglement applications",
+            "timestamp": "2025-05-29T13:45:00Z"
+          }
+        ],
+        "currentEmotionalState": "focused",
+        "pendingDecisions": [
+          {"type": "schedule_change", "options": ["work_late", "go_home"]}
+        ]
+      }
+    }
+  }
+}

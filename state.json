@@ -1,3 +1,69 @@
 {
-    "state": "339"
+    "id": "11f3b2bad8fe4ec2b67ad206bfd464c1",
+    "version": "1.0.0",
+    "name": "test",
+    "start_at": "2025-06-03T11:39:41.464970",
+    "duration": 100,
+    "json": {},
+    "environment": {
+        "weather": "sunny",
+        "time_of_day": "morning"
+    },
+    "map": {
+        "width": 3,
+        "height": 3,
+        "areas": [
+            {
+                "name": "地方1",
+                "grid": [
+                    [1,1,1],
+                    [0,0,0],
+                    [0,0,0]
+                ]
+            },
+            {
+                "name": "地方1",
+                "grid": [
+                    [1,1,1],
+                    [1,1,1],
+                    [0,0,0]
+                ]
+            }
+        ],
+        "collision": {
+            "name": "collision",
+            "grid": [
+                [0,0,0],
+                [0,0,0],
+                [1,1,1]
+            ]
+        }
+    },
+    "npcs": [
+        {
+            "id": "b66dfb5090394c6083e79181a93f4164",
+            "name": "robot1",
+            "pos": {
+                "x": 0,
+                "y": 1
+            },
+            "attrs": {
+                "battery": 0.3,
+                "on": true
+            }
+        }
+    ],
+    "players": [
+        {
+            "id": "bd3eeadbdb6547fea4073d11baff14a7",
+            "name": "李四",
+            "pos": {
+                "x": 1,
+                "y": 1
+            },
+            "attrs": {
+                "age": 18
+            }
+        }
+    ]
 }
